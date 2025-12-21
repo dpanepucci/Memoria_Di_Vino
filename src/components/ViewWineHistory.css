@@ -1,0 +1,195 @@
+/* Mobile Optimized - iPhone 14 Pro Max */
+
+.view-wine-history {
+  padding: 1.5rem 1rem;
+  background: #b17428;
+  min-height: 100vh;
+  font-family: "Marck Script", cursive;
+  color: beige;
+}
+
+.view-wine-history h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: beige;
+}
+
+.wine-count {
+  text-align: center;
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  color: beige;
+  opacity: 0.9;
+}
+
+.wine-list {
+  max-width: 390px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.wine-item {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: #b17428;
+}
+
+.wine-item-photo {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 3px solid #b17428;
+}
+
+.wine-item-content {
+  padding: 1.25rem;
+}
+
+.wine-item h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.5rem;
+  color: #b17428;
+  line-height: 1.3;
+}
+
+.wine-item p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.wine-type {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: #b17428;
+  color: beige;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.wine-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+}
+
+.wine-detail strong {
+  color: #8b5a2b;
+}
+
+.wine-stars {
+  display: inline-flex;
+  gap: 0.25rem;
+  font-size: 1.125rem;
+}
+
+.wine-stars span {
+  color: #ddd;
+}
+
+.wine-stars span.filled {
+  color: #ffd700;
+}
+
+.wine-notes {
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  background: rgba(177, 116, 40, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid #b17428;
+}
+
+.wine-notes strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #8b5a2b;
+}
+
+.wine-notes p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+.wine-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(177, 116, 40, 0.2);
+}
+
+.wine-date {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.delete-wine-btn {
+  padding: 0.5rem 1rem;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.delete-wine-btn:active {
+  transform: scale(0.95);
+}
+
+.no-wines {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: beige;
+}
+
+.no-wines p:first-child {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.no-wines p:last-child {
+  font-size: 1.25rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 430px) {
+  .view-wine-history h2 {
+    font-size: 1.75rem;
+  }
+  
+  .wine-item h3 {
+    font-size: 1.25rem;
+  }
+  
+  .wine-item p,
+  .wine-detail {
+    font-size: 0.9rem;
+  }
+  
+  .wine-footer {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  
+  .delete-wine-btn {
+    width: 100%;
+  }
+}

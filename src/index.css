@@ -1,0 +1,21 @@
+/* Organizes Main Page - Mobile Optimized for iPhone 14 Pro Max */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  background-color: tan;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
