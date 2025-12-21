@@ -6,6 +6,10 @@
   min-height: 100vh;
   font-family: "Marck Script", cursive;
   color: beige;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .add-wine-tab h2 {
@@ -17,15 +21,22 @@
 
 .add-wine-tab form {
   max-width: 390px;
+  width: 100%;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.95);
   padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .add-wine-tab .form-group {
   margin-bottom: 1.25rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .add-wine-tab .form-group label {
@@ -40,6 +51,7 @@
 .add-wine-tab .form-group select,
 .add-wine-tab .form-group textarea {
   width: 100%;
+  max-width: 100%;
   padding: 0.875rem;
   border: 2px solid #e0e0e0;
   border-radius: 6px;
@@ -48,6 +60,7 @@
   font-family: inherit;
   -webkit-appearance: none;
   appearance: none;
+  overflow-x: hidden;
 }
 
 .add-wine-tab .form-group input:focus,
@@ -60,6 +73,8 @@
 .add-wine-tab .form-group textarea {
   min-height: 100px;
   resize: vertical;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Photo Upload Styles */
