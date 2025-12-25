@@ -12,19 +12,69 @@ function AddWineTab({ onWineSaved }) {
   // State for form submission feedback
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Function to compress and resize image
+  const compressImage = (file, maxWidth = 800, quality = 0.7) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      
+      reader.onload = (e) => {
+        const img = new Image();
+        
+        img.onload = () => {
+          // Create canvas for compression
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          
+          // Resize if image is too large
+          if (width > maxWidth) {
+            height = (height * maxWidth) / width;
+            width = maxWidth;
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          
+          // Draw and compress
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          // Convert to compressed base64
+          const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+          
+          // Calculate size reduction
+          const originalSize = (e.target.result.length * 0.75) / 1024; // KB
+          const compressedSize = (compressedBase64.length * 0.75) / 1024; // KB
+          
+          console.log(`Image compressed: ${originalSize.toFixed(2)}KB → ${compressedSize.toFixed(2)}KB`);
+          
+          resolve(compressedBase64);
+        };
+        
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
   // Function to handle photo upload
-  const handlePhotoUpload = (event) => {
+  const handlePhotoUpload = async (event) => {
     const file = event.target.files[0]; // Get the selected file
     
     if (file) {
       // Check if it's an image
       if (file.type.startsWith('image/')) {
-        // Create a URL for the image to display as preview
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setPhotoPreview(reader.result); // Save the image data
-        };
-        reader.readAsDataURL(file); // Read the file as data URL
+        try {
+          // Compress the image before saving
+          const compressedImage = await compressImage(file);
+          setPhotoPreview(compressedImage);
+        } catch (error) {
+          console.error('Error compressing image:', error);
+          alert('Error processing image. Please try a different photo.');
+        }
       } else {
         alert('Please select an image file');
       }
@@ -83,7 +133,12 @@ function AddWineTab({ onWineSaved }) {
         onWineSaved(result.wine);
       }
     } else {
-      alert('Error saving wine: ' + result.error);
+      // Handle specific quota error
+      if (result.error && result.error.includes('quota')) {
+        alert('❌ Storage Full!\n\nYou\'ve reached your storage limit. Try:\n• Delete some old wines\n• Use photos without uploading (or smaller photos)\n• Contact support for cloud storage options');
+      } else {
+        alert('Error saving wine: ' + result.error);
+      }
     }
     
     setIsSubmitting(false);

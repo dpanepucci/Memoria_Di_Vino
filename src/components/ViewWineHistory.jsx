@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import "./ViewWineHistory.css";
 import { getAllWines, deleteWine } from "../utils/wineStorage";
+import { getStorageInfo } from "../utils/storageInfo";
 
 function ViewWineHistory() {
     const [wines, setWines] = useState([]);
+    const [storageInfo, setStorageInfo] = useState(null);
 
     // Load wines when component mounts
     useEffect(() => {
         loadWines();
+        loadStorageInfo();
     }, []);
 
     // Function to load all wines from localStorage
@@ -16,12 +19,19 @@ function ViewWineHistory() {
         setWines(allWines);
     };
 
+    // Function to load storage information
+    const loadStorageInfo = () => {
+        const info = getStorageInfo();
+        setStorageInfo(info);
+    };
+
     // Function to handle deleting a wine
     const handleDelete = (id, wineName) => {
         if (window.confirm(`Are you sure you want to delete "${wineName}"?`)) {
             const result = deleteWine(id);
             if (result.success) {
                 loadWines(); // Reload the list
+                loadStorageInfo(); // Refresh storage info
                 alert('Wine deleted successfully!');
             } else {
                 alert('Error deleting wine: ' + result.error);
@@ -55,6 +65,26 @@ function ViewWineHistory() {
     return (
         <div className="view-wine-history">
             <h2>My Wine Collection</h2>
+            
+            {/* Storage Info Bar */}
+            {storageInfo && (
+                <div className={`storage-info ${parseFloat(storageInfo.percentUsed) > 80 ? 'warning' : ''}`}>
+                    <div className="storage-text">
+                        Storage: {storageInfo.usedMB}MB / {storageInfo.limitMB}MB ({storageInfo.percentUsed}%)
+                    </div>
+                    <div className="storage-bar">
+                        <div 
+                            className="storage-bar-fill" 
+                            style={{ width: `${storageInfo.percentUsed}%` }}
+                        />
+                    </div>
+                    {parseFloat(storageInfo.percentUsed) > 80 && (
+                        <div className="storage-warning">
+                            ⚠️ Storage almost full! Delete old wines or reduce photo sizes.
+                        </div>
+                    )}
+                </div>
+            )}
             
             {wines.length === 0 ? (
                 <div className="no-wines">
