@@ -10,12 +10,13 @@ function App({ onLogout }) {
           onClick={onLogout}
           style={{
             padding: '10px 20px',
-            background: 'white',
-            color: 'black',
+            background: 'beige',
+            color: '#b17428',
             border: 'none',
-            borderRadius: '5px',
+            borderRadius: '8px',
             cursor: 'pointer',
-            fontWeight: '600'
+            fontWeight: '600',
+            fontFamily: '"Marck Script", cursive'
           }}
         >
           Logout

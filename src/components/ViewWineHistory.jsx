@@ -88,7 +88,7 @@ function ViewWineHistory() {
             
             {wines.length === 0 ? (
                 <div className="no-wines">
-                    <p>🍷 No wines added yet</p>
+                    <p>No wines added yet</p>
                     <p>Start tracking your wine journey!</p>
                 </div>
             ) : (

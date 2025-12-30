@@ -183,7 +183,7 @@ function AddWineTab({ onWineSaved }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="wine-name">Name of Wine *</label>
+          <label htmlFor="wine-name">Name of Wine </label>
           <input 
             type="text" 
             id="wine-name" 
@@ -239,7 +239,7 @@ function AddWineTab({ onWineSaved }) {
           className="submit-wine-btn"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Saving...' : '🍷 Add Wine'}
+          {isSubmitting ? 'Saving...' : ' Add Wine'}
         </button>
       </form>
     </div>
