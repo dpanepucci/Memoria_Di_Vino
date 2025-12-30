@@ -93,14 +93,12 @@ function AddWineTab({ onWineSaved }) {
     // Get form values
     const formData = new FormData(event.target);
     const wineName = formData.get('wine-name');
-    const wineType = formData.get('wine-type');
-    const wineVintage = formData.get('wine-vintage');
-    const wineRegion = formData.get('wine-region');
-    const wineNotes = formData.get('wine-notes');
+    const location = formData.get('wine-location');
+    const notes = formData.get('wine-notes');
     
     // Validate required fields
-    if (!wineName || !wineType) {
-      alert('Please fill in at least the wine name and type');
+    if (!wineName) {
+      alert('Please fill in the wine name');
       return;
     }
     
@@ -109,10 +107,8 @@ function AddWineTab({ onWineSaved }) {
     // Create wine object
     const wineData = {
       name: wineName,
-      type: wineType,
-      vintage: wineVintage || '',
-      region: wineRegion || '',
-      notes: wineNotes || '',
+      location: location || '',
+      notes: notes || '',
       rating: rating,
       photo: photoPreview, // base64 image string
     };
@@ -187,7 +183,7 @@ function AddWineTab({ onWineSaved }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="wine-name">Name *</label>
+          <label htmlFor="wine-name">Name of Wine *</label>
           <input 
             type="text" 
             id="wine-name" 
@@ -198,41 +194,18 @@ function AddWineTab({ onWineSaved }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="wine-type">Type *</label>
-          <select id="wine-type" name="wine-type" required>
-            <option value="">Select type</option>
-            <option value="red">Red</option>
-            <option value="white">White</option>
-            <option value="rose">Rosé</option>
-            <option value="sparkling">Sparkling</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="wine-vintage">Vintage (Year)</label>
-          <input 
-            type="number" 
-            id="wine-vintage" 
-            name="wine-vintage"
-            placeholder="e.g., 2020" 
-            min="1900"
-            max={new Date().getFullYear()}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="wine-region">Region</label>
+          <label htmlFor="wine-location">Location of Purchase</label>
           <input 
             type="text" 
-            id="wine-region" 
-            name="wine-region"
-            placeholder="e.g., Tuscany, Napa Valley" 
+            id="wine-location" 
+            name="wine-location"
+            placeholder="e.g., Local Wine Shop, Costco, Restaurant" 
           />
         </div>
 
         {/* Star Rating Section */}
         <div className="form-group">
-          <label>Rating</label>
+          <label>5 Star Rating</label>
           <div className="star-rating">
             {[1, 2, 3, 4, 5].map((star) => (
               <span
@@ -252,11 +225,11 @@ function AddWineTab({ onWineSaved }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="wine-notes">Tasting Notes</label>
+          <label htmlFor="wine-notes">Notes</label>
           <textarea 
             id="wine-notes" 
             name="wine-notes"
-            placeholder="Describe the wine... flavors, aromas, occasion, etc."
+            placeholder="Add any notes about this wine..."
             rows="4"
           />
         </div>
