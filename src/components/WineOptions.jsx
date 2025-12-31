@@ -50,7 +50,7 @@ function WineOptions() {
             <button onClick={() => setCurrentView('view')} className="view-wine-button">
                 View Wines
             </button>
-            <img className='italy_outline_flag' src="../src/assets/italy_outline_flag.png" alt="Italy Outline Flag" />
+            <img className='italy_outline_flag' src="../public/italy_outline_flag.png" alt="Italy Outline Flag" />
         </div>
         </>
     );
